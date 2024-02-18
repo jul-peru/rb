@@ -6,6 +6,11 @@ This Word2Vec Tag Recommender utilizes the Gensim Word2Vec model to generate sem
 
 ## Features
 NOTE: Please, initiate all scripts run from the `recommender` directory.
+All files should be in the `recommender` directory or in the any directory inside it.
+In the latter case please don't forget to pass correct path to the files as arguments.
+Currently data loader is only working with csv or tsv files. Parameters are passed according to test files.
+If you need to make any changes, please see the function description. 
+
 ### Model initiation and training:
 To initiate train of recommender model use 
 ```
