@@ -2,16 +2,19 @@
 Recommendation pipeline.
 """
 from dataloader import CSVDataLoader
-from loguru import logger
-from preprocessing import get_uniques, preprocess_input
+# from loguru import logger
+from preprocessing import preprocess_input
 from recommender import Word2VecTagRecommender
 import argparse
 import json
 
 
-parser = argparse.ArgumentParser(description="Recommend tags based on a search query")
-parser.add_argument("--num_results", type=int, default=3,
-                    help="Number of recommended tags (default: 3). Set value between 1 and 15")
+parser = argparse.ArgumentParser(
+    description="Recommend tags based on a search query"
+    )
+parser.add_argument(
+    "--num_results", type=int, default=3,
+    help="Number of recommended tags (default: 3). Set value between 1 and 15")
 parser.add_argument("search_query", type=str, help="Search query")
 
 # TODO Move config to a separate file

@@ -3,7 +3,8 @@ import pandas as pd
 from loguru import logger
 
 
-# Add as a class so we can initiate any needed connections in the future to load data
+# Add as a class so we can initiate any needed connections
+# in the future to load data
 # otherwise can leave it to be a function.
 class CSVDataLoader:
     """
@@ -34,7 +35,7 @@ class CSVDataLoader:
             row (0-indexed) to use as header or None if there is no header
         names : list
             list of column names to use
-        
+
         Returns
         -------
         df : pd.DataFrame
@@ -46,10 +47,11 @@ class CSVDataLoader:
         if file_extension in [".csv"]:
             sep = ","
         elif file_extension in [".tsv"]:
-            sep = '\t'
+            sep = "\t"
         else:
             raise ValueError(
-                f"Unsupported file extension: {file_extension}. Use 'csv' or 'tsv'."
+                f"Unsupported file extension: {file_extension}.\
+                Use 'csv' or 'tsv'."
                 )
         self.df = pd.read_csv(filepath, header=header, sep=sep, names=names)
         logger.info(f"{filepath} file loaded successfully.")

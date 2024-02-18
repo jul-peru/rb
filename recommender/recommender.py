@@ -15,7 +15,8 @@ class Word2VecTagRecommender:
     vector_size : int
         Dimensionality of the word vectors. Default is 100.
     window : int
-        Maximum distance between the current and predicted word within a sentence. Default is 5.
+        Maximum distance between the current and predicted word.
+        Default is 5.
     min_count : int
         Ignores all words with total frequency lower than this. Default is 1.
     workers : int
@@ -42,7 +43,14 @@ class Word2VecTagRecommender:
     recommend_tags(search_query, tags, top_n=3)
         Recommend top N tags for the given search query.
     """
-    def __init__(self, vector_size=100, window=5, min_count=1, workers=1, sg=1, seed=42):
+    def __init__(
+            self,
+            vector_size=100,
+            window=5,
+            min_count=1,
+            workers=1,
+            sg=1,
+            seed=42):
         """
         Initialize an instance of Word2VecTagRecommender class.
 
@@ -51,9 +59,11 @@ class Word2VecTagRecommender:
         vector_size : int, optional
             Dimensionality of the word vectors. Default is 100.
         window : int, optional
-            Maximum distance between the current and predicted word. Default is 5.
+            Maximum distance between the current and predicted word.
+            Default is 5.
         min_count : int, optional
-            Ignores all words with total frequency lower than this. Default is 1.
+            Ignores all words with total frequency lower than this.
+            Default is 1.
         workers : int, optional
             Number of workers used for training. Default is 1.
         sg : int, optional
@@ -78,8 +88,14 @@ class Word2VecTagRecommender:
         sentences : list of list of str
             List of sentences (tokenized) to train the model.
         """
-        self.model = Word2Vec(sentences=sentences, vector_size=self.vector_size, window=self.window,
-                              min_count=self.min_count, workers=self.workers, sg=self.sg)
+        self.model = Word2Vec(
+            sentences=sentences,
+            vector_size=self.vector_size,
+            window=self.window,
+            min_count=self.min_count,
+            workers=self.workers,
+            sg=self.sg,
+            seed=self.seed)
         logger.info("Model training completed.")
 
     def save_model(self, path="word2vec_model.model"):
@@ -123,7 +139,8 @@ class Word2VecTagRecommender:
         Returns
         -------
         numpy.ndarray or None
-            Embedding vector for the given text, or None if text is None or no valid embedding found.
+            Embedding vector for the given text,
+            or None if text is None or no valid embedding found.
         """
         if text is None:
             logger.error("There is no text to make embeddings")
