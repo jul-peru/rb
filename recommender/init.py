@@ -1,3 +1,6 @@
+"""
+Model initiation pipeline.
+"""
 import argparse
 import pandas as pd
 from stop_words import get_stop_words
@@ -6,6 +9,10 @@ from preprocessing import preprocess_input, prepare_train
 from recommender import Word2VecTagRecommender
 from loguru import logger
 
+
+parser = argparse.ArgumentParser(description="Artwork Search Recommendation System")
+parser.add_argument("--tags_file", help="Path to the artist tags CSV file")
+parser.add_argument("--search_file", help="Path to the user search keywords TSV file")
 
 # TODO Move config to the separate file
 config = {
@@ -17,9 +24,6 @@ config = {
 
 
 def main(config):
-    parser = argparse.ArgumentParser(description="Artwork Search Recommendation System")
-    parser.add_argument("--tags_file", help="Path to the artist tags CSV file")
-    parser.add_argument("--search_file", help="Path to the user search keywords TSV file")
     args = parser.parse_args()
 
     tags_file = args.tags_file
